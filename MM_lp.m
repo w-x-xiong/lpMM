@@ -1,4 +1,4 @@
-function [y] = MM_lp(Tx, Rx, Rg, p, epsilon)
+function [y] = MM_lp(Tx, Rx, Rg, p, epsilon, Nmax_in, Nmax_out)
 
 [H, M] = size(Tx);
 [~, N] = size(Rx);
@@ -24,10 +24,10 @@ while 1
     
     
     %update y
-    y = MM_l2(Tx, Rx, Rg, w_mtx, epsilon);
+    y = MM_l2(Tx, Rx, Rg, w_mtx, epsilon, Nmax_in);
 
 
-    if ( (norm(y - y_old)/min(norm(y),norm(y_old))) < epsilon ) || (cnt > 100)
+    if ( (norm(y - y_old)/min(norm(y),norm(y_old))) < epsilon ) || (cnt > Nmax_out)
         break
     end
     
