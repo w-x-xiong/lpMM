@@ -1,4 +1,4 @@
-function [y] = MM_l2(Tx, Rx, Rg, w_mtx, epsilon)
+function [y] = MM_l2(Tx, Rx, Rg, w_mtx, epsilon, Nmax_in)
 
 [H, M] = size(Tx);
 [~, N] = size(Rx);
@@ -47,7 +47,7 @@ while 1
     y = numerator/denominator;
 
 
-    if ( (norm(y - y_old)/norm(y_old)) < epsilon ) || (cnt > 1000)
+    if ( (norm(y - y_old)/norm(y_old)) < epsilon ) || (cnt > Nmax_in)
         break
     end
     
